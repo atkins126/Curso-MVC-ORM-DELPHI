@@ -6,9 +6,11 @@ uses
   System.Classes,
   projectsimpleorm.model.service.interfaces,
   projectsimpleorm.model.entity.cliente,
-  projectsimpleorm.model.entity.endereco, projectsimpleorm.model.entity.pedido,
+  projectsimpleorm.model.entity.endereco,
+  projectsimpleorm.model.entity.pedido,
   projectsimpleorm.model.entity.pedidoitens,
-  projectsimpleorm.model.entity.pessoa, projectsimpleorm.model.entity.produto;
+  projectsimpleorm.model.entity.pessoa,
+  projectsimpleorm.model.entity.produto;
 
 type
   iCliente = interface
