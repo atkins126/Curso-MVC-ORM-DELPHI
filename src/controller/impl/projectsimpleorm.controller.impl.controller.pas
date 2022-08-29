@@ -79,7 +79,7 @@ end;
 
 class function TController.New: iController;
 begin
-  Self.Create;
+  Result := Self.Create;
 end;
 
 function TController.Pedido: iPedido;

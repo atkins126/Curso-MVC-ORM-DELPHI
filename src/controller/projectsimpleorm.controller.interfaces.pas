@@ -8,6 +8,7 @@ uses
 
 type
   iController = interface
+  ['{5C186A35-3349-49EA-BA4A-DC1804167315}']
     function Pedido: iPedido;
     function PedidoItens: iPedidoItens;
     function Produto: iProduto;

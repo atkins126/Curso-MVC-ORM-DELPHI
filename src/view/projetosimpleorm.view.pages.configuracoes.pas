@@ -15,7 +15,9 @@ uses
   Vcl.StdCtrls,
   Vcl.ExtCtrls,
   Vcl.Buttons,
-  Vcl.Imaging.pngimage;
+  Vcl.Imaging.pngimage,
+  projectsimpleorm.controller.interfaces,
+  projectsimpleorm.controller.impl.controller;
 
 type
   TPageConfiguracoes = class(TForm)
@@ -66,7 +68,12 @@ type
     Shape12: TShape;
     edtServidor: TEdit;
     procedure SpeedButton1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
+    procedure SpeedButton2Click(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
+    FController: iController;
+    procedure CarregarDados;
   public
     { Public declarations }
   end;
@@ -76,12 +83,59 @@ var
 
 implementation
 
+uses
+  projetosimpleorm.model.resource.interfaces, 
+  projetosimpleorm.model.resource.impl.configuracao;
+
 {$R *.dfm}
 
+
+procedure TPageConfiguracoes.CarregarDados;
+begin
+   edtTipo.Text := FController.Configuracao.DriverID;
+   edtPath.Text := FController.Configuracao.DataBase;
+   edtUserName.Text := FController.Configuracao.UserName;
+   edtPassword.Text := FController.Configuracao.Password;
+   edtSchema.Text := FController.Configuracao.Schema;
+   edtLocking.Text := FController.Configuracao.Locking;
+   edtServidor.Text := FController.Configuracao.Server;
+end;
+
+procedure TPageConfiguracoes.FormCreate(Sender: TObject);
+begin
+  FController := TController.New;
+end;
+
+procedure TPageConfiguracoes.FormShow(Sender: TObject);
+begin
+  CarregarDados;
+end;
 
 procedure TPageConfiguracoes.SpeedButton1Click(Sender: TObject);
 begin
   Close;
+end;
+ 
+procedure TPageConfiguracoes.SpeedButton2Click(Sender: TObject);
+var
+  FConfiguracao: iConfiguracao;
+begin
+  try
+    FController.Configuracao
+      .DriverID(edtTipo.Text)
+      .DataBase(edtPath.Text)
+      .UserName(edtUserName.Text)
+      .Password(edtPassword.Text)
+      .Port(edtPorta.Text)
+      .Server(edtServidor.Text)
+      .Schema(edtSchema.Text)
+      .Locking(edtLocking.Text);
+  
+    ShowMessage('Dados gravados com sucesso');
+      
+  except
+    raise Exception.Create('Erro ao tentar gravar os dados');
+  end;
 end;
 
 end.

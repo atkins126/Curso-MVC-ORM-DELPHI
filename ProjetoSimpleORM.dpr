@@ -30,7 +30,9 @@ uses
   projectsimpleorm.controller.dto.impl.pedido in 'src\controller\dto\impl\projectsimpleorm.controller.dto.impl.pedido.pas',
   projectsimpleorm.controller.dto.impl.pedidoItens in 'src\controller\dto\impl\projectsimpleorm.controller.dto.impl.pedidoItens.pas',
   projectsimpleorm.controller.dto.impl.pessoa in 'src\controller\dto\impl\projectsimpleorm.controller.dto.impl.pessoa.pas',
-  projectsimpleorm.controller.dto.impl.produto in 'src\controller\dto\impl\projectsimpleorm.controller.dto.impl.produto.pas';
+  projectsimpleorm.controller.dto.impl.produto in 'src\controller\dto\impl\projectsimpleorm.controller.dto.impl.produto.pas',
+  projectsimpleorm.controller.interfaces in 'src\controller\projectsimpleorm.controller.interfaces.pas',
+  projectsimpleorm.controller.impl.controller in 'src\controller\impl\projectsimpleorm.controller.impl.controller.pas';
 
 {$R *.res}
 
@@ -39,8 +41,5 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   Application.MainFormOnTaskbar := True;
   Application.CreateForm(TPagePedidoVenda, PagePedidoVenda);
-  Application.CreateForm(TPageCliente, PageCliente);
-  Application.CreateForm(TPageConfiguracoes, PageConfiguracoes);
-  Application.CreateForm(TPageProduto, PageProduto);
   Application.Run;
 end.

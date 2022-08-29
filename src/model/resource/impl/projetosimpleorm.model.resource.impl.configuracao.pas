@@ -16,21 +16,21 @@ type
     destructor Destroy; override;
     class function New : iConfiguracao;
 
-    function DriverID(AValue: String): iConfiguracao; overload;
+    function DriverID(Value: String): iConfiguracao; overload;
     function DriverID                : String; overload;
-    function DataBase(AValue: String): iConfiguracao; overload;
+    function DataBase(Value: String): iConfiguracao; overload;
     function DataBase                : String; overload;
-    function UserName(AValue: String): iConfiguracao; overload;
+    function UserName(Value: String): iConfiguracao; overload;
     function UserName                : String; overload;
-    function Password(AValue: String): iConfiguracao; overload;
+    function Password(Value: String): iConfiguracao; overload;
     function Password                : String; overload;
-    function Port(AValue: String)    : iConfiguracao; overload;
+    function Port(Value: String)    : iConfiguracao; overload;
     function Port                    : String; overload;
-    function Server(AValue: String)  : iConfiguracao; overload;
+    function Server(Value: String)  : iConfiguracao; overload;
     function Server                  : String; overload;
-    function Schema(AValue: String)  : iConfiguracao; overload;
+    function Schema(Value: String)  : iConfiguracao; overload;
     function Schema                  : String; overload;
-    function Locking(AValue: String) : iConfiguracao; overload;
+    function Locking(Value: String) : iConfiguracao; overload;
     function Locking                 : String; overload;
 
   published
@@ -44,9 +44,7 @@ implementation
 constructor TConfiguracao.Create;
 begin
   if not FileExists('simpleorm.lc4') then
-  begin
     LocalCache.SaveToStorage('simpleorm.lc4');
-  end;
 
   LocalCache.LoadDatabase('simpleorm.lc4');
   LocalCache.Instance('Configuracao');
@@ -57,10 +55,10 @@ begin
   Result := LocalCache.GetItem('Database');
 end;
 
-function TConfiguracao.DataBase(AValue: String): iConfiguracao;
+function TConfiguracao.DataBase(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('Database', AValue);
+  LocalCache.SetItem('Database', Value);
 end;
 
 destructor TConfiguracao.Destroy;
@@ -74,16 +72,16 @@ begin
   Result := LocalCache.GetItem('DriverID');
 end;
 
-function TConfiguracao.DriverID(AValue: String): iConfiguracao;
+function TConfiguracao.DriverID(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('DriverID', AValue);
+  LocalCache.SetItem('DriverID', Value);
 end;
 
-function TConfiguracao.Locking(AValue: String): iConfiguracao;
+function TConfiguracao.Locking(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('Locking', AValue);
+  LocalCache.SetItem('Locking', Value);
 end;
 
 function TConfiguracao.Locking: String;
@@ -93,13 +91,13 @@ end;
 
 class function TConfiguracao.New: iConfiguracao;
 begin
-  Self.Create;
+  Result := Self.Create;
 end;
 
-function TConfiguracao.Password(AValue: String): iConfiguracao;
+function TConfiguracao.Password(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('Password', AValue);
+  LocalCache.SetItem('Password', Value);
 end;
 
 function TConfiguracao.Password: String;
@@ -112,10 +110,10 @@ begin
   Result := LocalCache.GetItem('Port')
 end;
 
-function TConfiguracao.Port(AValue: String): iConfiguracao;
+function TConfiguracao.Port(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('Port', AValue);
+  LocalCache.SetItem('Port', Value);
 end;
 
 function TConfiguracao.Schema: String;
@@ -123,16 +121,16 @@ begin
   Result := LocalCache.GetItem('Schema');
 end;
 
-function TConfiguracao.Schema(AValue: String): iConfiguracao;
+function TConfiguracao.Schema(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('Schema', AValue);
+  LocalCache.SetItem('Schema', Value);
 end;
 
-function TConfiguracao.Server(AValue: String): iConfiguracao;
+function TConfiguracao.Server(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('Server', AValue);
+  LocalCache.SetItem('Server', Value);
 end;
 
 function TConfiguracao.Server: String;
@@ -140,10 +138,10 @@ begin
   Result := LocalCache.GetItem('Server');
 end;
 
-function TConfiguracao.UserName(AValue: String): iConfiguracao;
+function TConfiguracao.UserName(Value: String): iConfiguracao;
 begin
   Result := Self;
-  LocalCache.SetItem('UserName', AValue);
+  LocalCache.SetItem('UserName', Value);
 end;
 
 function TConfiguracao.UserName: String;
